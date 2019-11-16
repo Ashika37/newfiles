@@ -1,0 +1,65 @@
+//for accessing the database from hibernate//
+
+
+
+
+
+publicf List<Student> getStudentByName(String studentName) {
+  TypedQuery<Student> studentTypedQuery =
+    em().createQuery("SELECT s FROM Student s WHERE s.name LIKE :studentName",
+    Student.class);
+
+    studentTypedQuery.setParameter("StudentName", studentName);
+
+    return srtudentTypedQuery.getResultList();
+}
+
+
+public static void main(String[] args) {
+EntityManagerFactory emfactory = Persistence.createEntitymanagerFa
+EntityManager entitymanager = emfactory.createEntityManager();
+
+//Between
+Query query = entitymanager.createQuery("Select e " + "from Employee e" + "ORDER BY e.name ASC");
+
+List<Employee> list = (List<Employee>)query.getResultlIST();
+
+FOR( Employee e:list) {
+System.out.println ("Employee ID :" e.getEid());
+System.out.println("\t Employee Nmae :" + e.getEnmae());
+
+}
+}
+}
+
+//Scalar function
+
+	Query query = entitymanager.createQuery("Select UPPER(e.ename) from Employee e" );
+	List<String> lsit = query.getResultList();
+
+	for(String e:list){
+		System.out.println("Employee NAME :" +e);
+	}
+
+//Aggregate function
+
+	Query query1 = entitymanager.createQuery("Select MAX(e.salary) from Employee e");
+	Double result = (Double) query1.getSingleResult();
+	System.out.println("Max employee salary :" +result);
+	}
+}
+
+//Between
+Query query = entitymanager.createQuery("Select e " + "from Employee e" + "where e.salary "+" Between 30000 and 40000");
+
+List<Employee> list = (List<Employee>)query.getResultList();
+
+for( Employee e:list) {
+System.out.println ("Employee ID :" e.getEid());
+System.out.println("\t Employee Nmae :" + e.getSalary);
+}
+
+//LIKE
+Query query1 = entitymanager.createQuery("Select e "+" from Employee e "+" where e.ename LIKE 'M%' ");
+List<Employee> list = (List<Employee>)query.getResultList();
+
